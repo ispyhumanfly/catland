@@ -21,6 +21,16 @@ def about():
     message = "About Catland"
     return render_template("about.html", message=message)
 
+@app.route('/gallery')
+def uploader():
+    message = "Gallery"
+    return render_template('gallery.html', message=message)
+
+@app.route('/uploader')
+def uploader():
+    message = "Uploader"
+    return render_template('uploader.html', message=message)
+
 @app.route('/db')
 def db():
 
