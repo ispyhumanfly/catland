@@ -3,7 +3,6 @@ from flask import render_template
 
 import boto3
 
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -34,10 +33,10 @@ def uploader():
 @app.route('/db')
 def db():
 
-    dynamobd = boto3.resource('dyanamobd',region_name= 'us-west-2', endpoint_url="http://localhost:8000")
+    dynamobd = boto3.resource('dyanamobd',region_name= 'us-east-2', endpoint_url="http://localhost:5000")
 
     table = dynamobd.create.table(
-        TableName= 'Uploadedpictures',
+        TableName= 'Gallery',
         KeySchema=[
             {
                 'AttributeName': 'ID',
@@ -54,11 +53,7 @@ def db():
             {
                 'AttributeName': 'Filesize',
                 'KeyType': 'HASH'
-            },
-            {
-                'AttributeName': 'originalLocation',
-                'KeyType': 'HASH'
-            },
+            }
 
         ],
         AttributeDefinition=[
@@ -72,16 +67,12 @@ def db():
             },
             {
             'AttributeName': 'Filename',
-            'AttributeType': 'N'
+            'AttributeType': 'S'
             },
             {
             'AttributeName': 'Filesize',
             'AttributeType': 'N'
-            },
-            {
-            'AttributeName': 'originalLocation',
-            'AttributeType': 'N'
-            },
+            }
         ],
         ProvisionedThroughput={
             'ReadCapacityUnits': 10,
