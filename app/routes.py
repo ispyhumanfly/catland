@@ -1,5 +1,6 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
+from werkzeug.utils import secure_filename
 
 import boto3
 
@@ -12,7 +13,7 @@ def index():
 
 @app.route('/readme')
 def readme():
-    message = "Welcome to the readme page"
+    message = "Welcome to the readme page."
     return render_template("readme.html", message=message)
 
 @app.route('/about')
@@ -25,10 +26,14 @@ def uploader():
     message = "Gallery"
     return render_template('gallery.html', message=message)
 
-@app.route('/uploader')
+@app.route('/uploader', methods=['GET', 'POST'])
 def uploader():
     message = "Uploader"
-    return render_template('uploader.html', message=message)
+
+    if request.method == 'GET':
+        return render_template('uploader.html', message=message)
+    if request.method == 'POST':
+        return 
 
 @app.route('/db')
 def db():
