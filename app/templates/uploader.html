@@ -10,8 +10,6 @@
             h1 {color: black; text-align: center;}
 
             p {background-color: white; padding: 50px; border: 1px solid; font-size:150%;}
-
-            ul{background-color: salmon; padding: auto; border: 10px solid forestgreen; font-size:120%;}
         </style>
     </head>
     <body>
@@ -19,25 +17,11 @@
         <form action = "http://localhost:5000/uploader" method = "POST">
             <label for="upname">Image name</label><br>
             <input type="text" id="upname" name="upname"><br>
-            <input type="submit" value="Submit"> 
+            <label for="img">Select image:</label>
+            <input type="file" id="file" name="file" accept="image/*"><br>  
+            <input type="submit" value="Submit">
         </form>
-
-
-
-
-#foo
-
-
-
-
-
     </body>
-
-
-
-
-
-
 
 
 </html>
