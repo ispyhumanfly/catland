@@ -1,6 +1,8 @@
 # Catland
 A website about cats.
 
-# Deps
-    boto3
-    flask
+# Installation
+  pip3 install -r requirements.txt
+
+# Running
+    flask run
