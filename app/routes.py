@@ -6,12 +6,6 @@ from werkzeug.utils import secure_filename
 import boto3
 import os
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -43,20 +37,19 @@ def uploader():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
+            print('No file part')
             return redirect(request.url)
         file = request.files['file']
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
-            flash('No selected file')
+            print('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        if file:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
+            return redirect(url_for('uploader',
                                     filename=filename))
-        
 
 @app.route('/db')
 def db():

@@ -14,9 +14,10 @@
     </head>
     <body>
         <h1>Upload Image</h1>
-        <form action = "http://localhost:5000/uploader" method = "POST">
-            <label for="upname">Image name</label><br>
-            <input type="text" id="upname" name="upname"><br>
+        <form enctype="multipart/form-data" action="http://localhost:5000/uploader" method = "POST">
+            <!-- label for="upname">Image name</label><br>
+            <input type="text" id="upname" name="upname"><br --->
+
             <label for="img">Select image:</label>
             <input type="file" id="file" name="file" accept="image/*"><br>  
             <input type="submit" value="Submit">
