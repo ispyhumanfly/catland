@@ -103,7 +103,7 @@ def db():
     print("Table status:", table.table_status)
 
 # Static Directory Services
-
+'''
 @app.route('/styles/<path:path>')
 def send_js(path):
     return send_from_directory('styles', path)
@@ -115,3 +115,4 @@ def send_js(path):
 @app.route('/images/<path:path>')
 def send_js(path):
     return send_from_directory('images', path)
+'''
