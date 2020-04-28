@@ -1,6 +1,6 @@
 from app import app
 
-from flask import render_template, request, redirect, flash, session, url_for
+from flask import render_template, request, redirect, flash, session, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
 import boto3
@@ -9,7 +9,6 @@ import os
 @app.route('/')
 @app.route('/index')
 def index():
-
     message = "Hey there, welcome to my website."
     return render_template("index.html", message=message)
 
@@ -102,3 +101,17 @@ def db():
     )
 
     print("Table status:", table.table_status)
+
+# Static Directory Services
+
+@app.route('/styles/<path:path>')
+def send_js(path):
+    return send_from_directory('styles', path)
+
+@app.route('/scripts/<path:path>')
+def send_js(path):
+    return send_from_directory('scripts', path)
+
+@app.route('/images/<path:path>')
+def send_js(path):
+    return send_from_directory('images', path)
