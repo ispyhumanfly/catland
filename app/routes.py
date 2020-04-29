@@ -29,7 +29,21 @@ def gallery():
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def uploader():
+
     message = "Uploader"
+
+    client = boto3.client('s3')
+
+    try:
+        response = client.create_bucket(
+            ACL='public-read-write',
+            Bucket='uploads2',
+            CreateBucketConfiguration={
+                'LocationConstraint': 'us-east-2'
+            }
+        )
+    except:
+        print("The bucket existed already, move along...")
 
     if request.method == 'GET':
         return render_template('uploader.html', message=message)
@@ -47,8 +61,11 @@ def uploader():
         if file:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploader',
-                                    filename=filename))
+
+            s3 = boto3.resource('s3')
+            s3.meta.client.upload_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'uploads2', filename)
+
+            return redirect(url_for('uploader', filename=filename))
 
 @app.route('/db')
 def db():
