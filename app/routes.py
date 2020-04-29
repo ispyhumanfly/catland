@@ -37,7 +37,7 @@ def uploader():
     try:
         response = client.create_bucket(
             ACL='public-read-write',
-            Bucket='uploads2',
+            Bucket='catland-uploads',
             CreateBucketConfiguration={
                 'LocationConstraint': 'us-east-2'
             }
@@ -63,7 +63,7 @@ def uploader():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             s3 = boto3.resource('s3')
-            s3.meta.client.upload_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'uploads2', filename)
+            s3.meta.client.upload_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'catland-uploads', filename)
 
             return redirect(url_for('uploader', filename=filename))
 
