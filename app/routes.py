@@ -30,7 +30,7 @@ def gallery():
     bucket = s3.Bucket('catland-uploads')
 
     for file in bucket.objects.all():
-        print(file)
+        print(file.key)
 
         client = boto3.client('s3')
 
@@ -82,7 +82,7 @@ def uploader():
             bucket = s3.Bucket('catland-uploads')
 
             for file in bucket.objects.all():
-                print(file)
+                print(file.key)
 
             conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
             for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
