@@ -6,21 +6,25 @@ from werkzeug.utils import secure_filename
 import boto3
 import os
 
+
 @app.route('/')
 @app.route('/index')
 def index():
     message = "Hey there, welcome to my website."
     return render_template("index.html", message=message)
 
+
 @app.route('/readme')
 def readme():
     message = "Welcome to the readme page."
     return render_template("readme.html", message=message)
 
+
 @app.route('/about')
 def about():
     message = "About Catland"
     return render_template("about.html", message=message)
+
 
 @app.route('/gallery')
 def gallery():
@@ -35,11 +39,12 @@ def gallery():
 
     client = boto3.client('s3')
 
-    conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
+    conn = client('s3')
     for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
         images.append(key['Key'])
 
     return render_template('gallery.html', message=message, images=images)
+
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def uploader():
@@ -77,14 +82,15 @@ def uploader():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             s3 = boto3.resource('s3')
-            s3.meta.client.upload_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'catland-uploads', filename)
+            s3.meta.client.upload_file(os.path.join(
+                app.config['UPLOAD_FOLDER'], filename), 'catland-uploads', filename)
 
             bucket = s3.Bucket('catland-uploads')
 
             for file in bucket.objects.all():
                 print(file.key)
 
-            conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
+            conn = client('s3')
             for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
                 print(key['Key'])
 

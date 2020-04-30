@@ -1,7 +1,6 @@
+from app import routes
 from flask import Flask
 app = Flask(__name__, static_url_path="/", static_folder="./assets")
 
 app.config['UPLOAD_FOLDER'] = './uploads'
-app.config['SECRET_KEY'] = 'the random string'    
-
-from app import routes
+app.config['SECRET_KEY'] = 'the random string'
