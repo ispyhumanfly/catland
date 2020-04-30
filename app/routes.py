@@ -25,20 +25,19 @@ def about():
 @app.route('/gallery')
 def gallery():
     message = "Gallery"
+    images = []
 
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('catland-uploads')
 
     for file in bucket.objects.all():
-        print(file.key)
+        images.append(file.key)
 
     client = boto3.client('s3')
 
-    images = ["https://zjf683hopnivfq5d12xaooxr-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg"]
-
     conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
     for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
-        print(key['Key'])
+        images.append(key['Key'])
 
     return render_template('gallery.html', message=message, images=images)
 
