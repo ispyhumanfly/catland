@@ -25,6 +25,13 @@ def about():
 @app.route('/gallery')
 def gallery():
     message = "Gallery"
+
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('catland-uploads')
+
+    for file in bucket.objects.all():
+        print(file)
+
     return render_template('gallery.html', message=message)
 
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -65,71 +72,9 @@ def uploader():
             s3 = boto3.resource('s3')
             s3.meta.client.upload_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'catland-uploads', filename)
 
+            bucket = s3.Bucket('catland-uploads')
+
+            for file in bucket.objects.all():
+                print(file)
+
             return redirect(url_for('uploader', filename=filename))
-
-@app.route('/db')
-def db():
-
-    dynamobd = boto3.resource('dyanamobd',region_name= 'us-east-2', endpoint_url="http://localhost:5000")
-
-    table = dynamobd.create.table(
-        TableName= 'Gallery',
-        KeySchema=[
-            {
-                'AttributeName': 'ID',
-                'KeyType': 'HASH'
-            },
-            {
-                'AttributeName': 'Timestamp',
-                'KeyType': 'HASH'
-            },
-            {
-                'AttributeName': 'Filename',
-                'KeyType': 'HASH'
-            },
-            {
-                'AttributeName': 'Filesize',
-                'KeyType': 'HASH'
-            }
-
-        ],
-        AttributeDefinition=[
-            {
-            'AttributeName': 'ID',
-            'AttributeType': 'N'
-            },
-            {
-            'AttributeName': 'Timestamp',
-            'AttributeType': 'N'
-            },
-            {
-            'AttributeName': 'Filename',
-            'AttributeType': 'S'
-            },
-            {
-            'AttributeName': 'Filesize',
-            'AttributeType': 'N'
-            }
-        ],
-        ProvisionedThroughput={
-            'ReadCapacityUnits': 10,
-            'WriteCapacityUnits': 10
-        }
-    )
-
-    print("Table status:", table.table_status)
-
-# Static Directory Services
-'''
-@app.route('/styles/<path:path>')
-def send_js(path):
-    return send_from_directory('styles', path)
-
-@app.route('/scripts/<path:path>')
-def send_js(path):
-    return send_from_directory('scripts', path)
-
-@app.route('/images/<path:path>')
-def send_js(path):
-    return send_from_directory('images', path)
-'''
