@@ -32,6 +32,13 @@ def gallery():
     for file in bucket.objects.all():
         print(file)
 
+        client = boto3.client('s3')
+
+        conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
+        for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
+            print(key['Key'])
+
+
     return render_template('gallery.html', message=message)
 
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -76,5 +83,9 @@ def uploader():
 
             for file in bucket.objects.all():
                 print(file)
+
+            conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
+            for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
+                print(key['Key'])
 
             return redirect(url_for('uploader', filename=filename))
