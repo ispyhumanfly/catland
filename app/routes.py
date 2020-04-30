@@ -34,7 +34,7 @@ def gallery():
 
     client = boto3.client('s3')
 
-    images = ["one", "two", "three"]
+    images = ["https://www.google.com/imgres?imgurl=https%3A%2F%2Fundark.org%2Fwp-content%2Fuploads%2F2020%2F02%2FGettyImages-1199242002-1-scaled.jpg&imgrefurl=https%3A%2F%2Fundark.org%2F2020%2F02%2F14%2Fabstracts-cats-girls-climate-drugs%2F&tbnid=FiZHcWIkphSUZM&vet=12ahUKEwjbwsq69Y7pAhVDG6wKHapIAr0QMygDegUIARCdAg..i&docid=tDzPWcIsxwx_RM&w=2048&h=1152&q=cats&ved=2ahUKEwjbwsq69Y7pAhVDG6wKHapIAr0QMygDegUIARCdAg", "https://mail.google.com/mail/?tab=im&authuser=0", "https://news.google.com/nwshp?hl=en&tab=in&authuser=0"]
 
     conn = client('s3')  # again assumes boto.cfg setup, assume AWS S3
     for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
