@@ -29,18 +29,12 @@ def about():
 @app.route('/gallery')
 def gallery():
     message = "Gallery"
+    
     images = []
-
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket('catland-uploads')
-
-    for file in bucket.objects.all():
-        images.append(file.key)
 
     client = boto3.client('s3')
 
-    conn = client('s3')
-    for key in conn.list_objects(Bucket='catland-uploads')['Contents']:
+    for key in client.list_objects(Bucket='catland-uploads')['Contents']:
         images.append(key['Key'])
 
     return render_template('gallery.html', message=message, images=images)
