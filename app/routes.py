@@ -34,8 +34,10 @@ def gallery():
 
     client = boto3.client('s3')
 
-    for key in client.list_objects(Bucket='catland-uploads')['Contents']:
-        images.append(key['Key'])
+    for file in client.list_objects(Bucket='catland-uploads')['Contents']:
+        url = "/uploads/%s" % (file['Key'])
+        images.append(url)
+        print(url)
 
     return render_template('gallery.html', message=message, images=images)
 
