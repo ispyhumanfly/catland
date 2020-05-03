@@ -1,4 +1,4 @@
-body {background-color: lightblue;} //FIXME why does this not work, added to html for time being
+body {background-color: lightblue;} 
 
 h1 {color: hotpink; text-align: center;}
 
@@ -11,8 +11,3 @@ img {height: 250px; width: auto;; padding: 10px; border: 1px dashed;}
 
 
 
-
-.nav.navbar navbar-nav mr-auto li a {
-    color: blue;
-} 
- TODO Figure out text color change, not really needed
