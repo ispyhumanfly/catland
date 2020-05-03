@@ -1,9 +1,18 @@
-body  {background-color: lightblue;}
+body {background-color: lightblue;} //FIXME why does this not work, added to html for time being
 
 h1 {color: hotpink; text-align: center;}
 
 p {background-color: white; padding: 50px; border: 1px solid; font-size:150%;}
 
-ul{background-color: coral; padding: auto; border: 10px solid forestgreen; font-size:120%;}
+ul{background-color:lightsalmon; padding: auto; border: 10px solid hotpink; font-size:120%;}
 
-img {height: 250px; width: auto; background-color: white; padding: 10px; border: 1px dashed;}
+img {height: 250px; width: auto;; padding: 10px; border: 1px dashed;}
+
+
+
+
+
+.nav.navbar navbar-nav mr-auto li a {
+    color: blue;
+} 
+ TODO Figure out text color change
