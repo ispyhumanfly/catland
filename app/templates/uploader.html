@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
+    
         <title>Upload</title>
         <link rel="stylesheet" type="text/css" href="/styles/uploader.css" />
     </head>
     <body>
+        {% extends "layout.html" %}
+        {% block content %}
+          <div class="uploader">
         <h1>Upload Image</h1>
         <form enctype="multipart/form-data" action="http://localhost:5000/uploader" method = "POST">
             <!-- label for="upname">Image name</label><br>
@@ -13,8 +17,8 @@
             <label for="img">Select image:</label>
             <input type="file" id="file" name="file" accept="image/*"><br>  
             <input type="submit" value="Submit">
-        </form>
+        </form>   
+          </div>
+        {% endblock %}
     </body>
-
-
 </html>

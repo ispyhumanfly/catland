@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
    <head>
+     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/styles/gallery.css" />
     <title>Uploaded cat stuff.</title>
@@ -8,7 +9,9 @@
     </head>
 
 <body>
-
+  {% extends "layout.html" %}
+  {% block content %}
+    <div class="gallery">
   
 <h2 style="text-align:center">Slideshow Gallery</h2>
   <!-- Container for the image gallery -->
@@ -35,6 +38,10 @@
             </div>
         
         {% endfor %}
+        
+            
+          </div>
+        {% endblock %}
        
       </div>
     </div>
