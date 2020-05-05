@@ -14,6 +14,12 @@ def index():
     return render_template("index.html", message=message)
 
 
+@app.route('/bootstrap')
+def bootsrap():
+    message = "Welcome to the bootstrap page."
+    return render_template("bootstrap.html", message=message)
+
+
 @app.route('/readme')
 def readme():
     message = "Welcome to the readme page."
