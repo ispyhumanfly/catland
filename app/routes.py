@@ -11,31 +11,31 @@ import os
 @app.route('/index')
 def index():
     message = "Hey there, welcome to my website."
-    return render_template("index.html", message=message)
+    return render_template("index.jinja", message=message)
 
 
 @app.route('/bootstrap')
 def bootsrap():
     message = "Welcome to the bootstrap page."
-    return render_template("bootstrap.html", message=message)
+    return render_template("bootstrap.jinja", message=message)
 
 
 @app.route('/readme')
 def readme():
     message = "Welcome to the readme page."
-    return render_template("readme.html", message=message)
+    return render_template("readme.jinja", message=message)
 
 
 @app.route('/about')
 def about():
     message = "About Catland"
-    return render_template("about.html", message=message)
+    return render_template("about.jinja", message=message)
 
 
 @app.route('/gallery')
 def gallery():
     message = "Gallery"
-    
+
     images = []
 
     client = boto3.client('s3')
@@ -45,7 +45,7 @@ def gallery():
         images.append(url)
         print(url)
 
-    return render_template('gallery.html', message=message, images=images)
+    return render_template('gallery.jinja', message=message, images=images)
 
 
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -67,7 +67,7 @@ def uploader():
         print("The bucket existed already, move along...")
 
     if request.method == 'GET':
-        return render_template('uploader.html', message=message)
+        return render_template('uploader.jinja', message=message)
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:

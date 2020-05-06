@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.jinja" %} 
 
 {% block head %} 
 
@@ -18,7 +18,7 @@
 
 {% block content %} 
 
-{% include "components/navbar.html" ignore missing %}
+{% include "components/navbar.jinja" ignore missing %}
 
 <div class="alert alert-primary" role="alert">
   We are officially inside of a bootstrap application!
