@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html lang="en-US">
-    <body>
+{% extends "base.jinja" %} 
+
+{% block head %} 
+
+{{ super() }} 
+
+{% block title %} Gallery {% endblock %}
         
-    <head>
-        
-        <title>Catland</title>
-        <link rel="stylesheet" type="text/css" href="/styles/index.css" />
-        
-    </head>  
-    {% extends "layout.jinja" %}
-    {% block content %}
+<link rel="stylesheet" type="text/css" href="/styles/index.css" />
+
+{% endblock %} 
+
+{% block content %}
+
+{% include "components/navbar.jinja" ignore missing %}
+  
       <div class="Home">
         <h1>Welcome to Catland</h1>
     <img title="Meow" src="https://undark.org/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg" alt="Cat looking at you">
@@ -19,7 +23,14 @@
             <li>Look at cats</li>
             <li><em>Be a cat?</em></li>
         </div>
-        {% endblock %}
         </ul>
-    </body>
-</html>
+{% endblock %}
+
+{% block footer %}
+
+<script
+    src="/scripts/index.js"
+    crossorigin="anonymous"
+></script>
+
+{% endblock %}
