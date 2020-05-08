@@ -83,11 +83,11 @@ def uploader():
             return redirect(request.url)
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['TEMP'], filename))
 
             s3 = boto3.resource('s3')
             s3.meta.client.upload_file(os.path.join(
-                app.config['UPLOAD_FOLDER'], filename), 'catland-uploads', filename)
+                app.config['TEMP'], filename), 'catland-uploads', filename)
 
             bucket = s3.Bucket('catland-uploads')
 
@@ -108,9 +108,9 @@ def download(filename):
     try:
         # TODO start saving files temporarily in ./tmp instead of ./uploads...
         s3.Bucket("catland-uploads").download_file(filename,
-                                                   "./app/uploads/%s" % filename)
+                                                   os.path.join(app.config['TEMP'], filename))
     except:
         print("something went wong")
 
-    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    return send_file(os.path.join(app.config['TEMP'], filename))
     # return send_from_directory("./uploads", filename=filename)
