@@ -1,53 +1,28 @@
-<header>
-  <!-- TODO inject this indo head block of base template. -->
-  <link rel="stylesheet" type="text/css" href="/styles/gallery.css" />
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Catland</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
 
-  <style>
-    body {
-      font-size: 28px;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-      position: -webkit-sticky; /* Safari */
-      position: sticky;
-      top: 0;
-    }
-
-    li {
-      float: left;
-    }
-
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      background-color: #111;
-    }
-
-    .active {
-      background-color: #4caf50;
-    }
-  </style>
-  <div class="container">
-    <strong
-      ><nav>
-        <ul class="menu">
-          <li><a href="http://127.0.0.1:5000/index">Home</a></li>
-          <li><a href="http://127.0.0.1:5000/uploader">Upload Cats</a></li>
-          <li><a href="http://127.0.0.1:5000/gallery">Gallery</a></li>
-          <li><a href="http://127.0.0.1:5000/about">About</a></li>
-        </ul>
-      </nav></strong
-    >
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/uploader">Upload Cats</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/gallery">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
-</header>
+</nav>
