@@ -1,4 +1,4 @@
 __pycache__
 *.pyc
-app/uploads/*
-!app/uploads/README.md
+app/tmp/*
+!app/tmp/README.md

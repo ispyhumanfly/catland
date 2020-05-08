@@ -106,11 +106,9 @@ def download(filename):
     s3 = boto3.resource("s3")
 
     try:
-        # TODO start saving files temporarily in ./tmp instead of ./uploads...
         s3.Bucket("catland-uploads").download_file(filename,
                                                    os.path.join(app.config['TEMP'], filename))
     except:
         print("something went wong")
 
     return send_file(os.path.join(app.config['TEMP'], filename))
-    # return send_from_directory("./uploads", filename=filename)
