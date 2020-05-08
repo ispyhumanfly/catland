@@ -26,10 +26,13 @@
 <div class="uploader">
     <h1>Upload Image</h1>
     <form enctype="multipart/form-data" action="http://localhost:5000/uploader" method = "POST">
+        <div class="form-group">
 
-        <label for="img">Select image:</label>
-        <input type="file" id="file" name="file" accept="image/*"><br>  
-        <input type="submit" value="Submit">
+            <label for="img">Select image:</label>
+            <input class="form-control" type="file" id="file" name="file" accept="image/*"><br>
+            <small id="emailHelp" class="form-text text-muted">Your precious cat pics can be uploaded here!</small>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>   
 </div>
 
