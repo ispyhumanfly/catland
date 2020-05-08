@@ -1,24 +1,43 @@
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-    
-        <title>Upload</title>
-        <link rel="stylesheet" type="text/css" href="/styles/uploader.css" />
-    </head>
-    <body>
-        {% extends "layout.jinja" %}
-        {% block content %}
-          <div class="uploader">
-        <h1>Upload Image</h1>
-        <form enctype="multipart/form-data" action="http://localhost:5000/uploader" method = "POST">
-            <!-- label for="upname">Image name</label><br>
-            <input type="text" id="upname" name="upname"><br --->
+{% extends "base.jinja" %} 
 
-            <label for="img">Select image:</label>
-            <input type="file" id="file" name="file" accept="image/*"><br>  
-            <input type="submit" value="Submit">
-        </form>   
-          </div>
-        {% endblock %}
-    </body>
-</html>
+{% block head %} 
+
+{{ super() }} 
+
+{% block title %} Uploader {% endblock %}
+
+    <link
+    rel="stylesheet"
+    script
+    type="text/css"
+    href="/styles/uploader.css"
+    />
+{% endblock %} 
+
+
+{% block content %} 
+
+{% include "components/navbar.jinja" ignore missing %}
+
+<div class="alert alert-primary" role="alert">
+  We are officially inside of a bootstrap application!
+</div>
+
+<div class="uploader">
+    <h1>Upload Image</h1>
+    <form enctype="multipart/form-data" action="http://localhost:5000/uploader" method = "POST">
+
+        <label for="img">Select image:</label>
+        <input type="file" id="file" name="file" accept="image/*"><br>  
+        <input type="submit" value="Submit">
+    </form>   
+</div>
+
+
+{% endblock %} 
+
+{% block footer %}
+
+<script src="/scripts/uploader.js" crossorigin="anonymous"></script>
+
+{% endblock %}
