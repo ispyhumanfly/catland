@@ -1,18 +1,12 @@
 {% extends "base.jinja" %} 
 
-{% block head %} 
+{% block head %}
 
-{{ super() }} 
+{{ super() }}
 
-<!-- TODO look into why this title displays in the body also... -->
 {% block title %} About Catland {% endblock %}
 
-    <link
-    rel="stylesheet"
-    script
-    type="text/css"
-    href="/styles/about.css"
-    />
+<link rel="stylesheet" script type="text/css" href="/styles/about.css" />
 {% endblock %} 
 
 {% block content %} 
@@ -41,43 +35,46 @@
     alt="cat glasses"
   />
 
-  <body id="about">
-    <h1>What is Catland</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel dolor
-      id nulla condimentum auctor. Etiam risus tellus, aliquam vitae pharetra
-      nec, volutpat at neque. Phasellus euismod non orci id vestibulum. Aliquam
-      feugiat felis in fermentum sollicitudin. Proin vel pretium leo, non ornare
-      sem. Integer sodales ligula eu justo egestas facilisis. Donec at nisl quis
-      purus sagittis laoreet in sit amet odio. Nam finibus risus est, egestas
-      porttitor quam cursus id. Pellentesque in nibh nisl. In hac habitasse
-      platea dictumst. Praesent id quam risus. Nullam non metus ante. Etiam
-      vitae urna a nibh sodales ullamcorper vitae non velit. Vivamus congue
-      mauris neque, nec ornare libero condimentum in. Nulla nec lorem turpis.
-    </p>
+  <h1>What is Catland</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel dolor
+    id nulla condimentum auctor. Etiam risus tellus, aliquam vitae pharetra nec,
+    volutpat at neque. Phasellus euismod non orci id vestibulum. Aliquam feugiat
+    felis in fermentum sollicitudin. Proin vel pretium leo, non ornare sem.
+    Integer sodales ligula eu justo egestas facilisis. Donec at nisl quis purus
+    sagittis laoreet in sit amet odio. Nam finibus risus est, egestas porttitor
+    quam cursus id. Pellentesque in nibh nisl. In hac habitasse platea dictumst.
+    Praesent id quam risus. Nullam non metus ante. Etiam vitae urna a nibh
+    sodales ullamcorper vitae non velit. Vivamus congue mauris neque, nec ornare
+    libero condimentum in. Nulla nec lorem turpis.
+  </p>
 
-    <p>
-      Nunc a tortor a nisl lobortis ultricies. Praesent nec mauris eget leo
-      vulputate facilisis vitae id lectus. Suspendisse ultrices augue nisi, ac
-      hendrerit nunc efficitur eu. Etiam vehicula finibus velit laoreet luctus.
-      Aliquam id est cursus, vestibulum velit eu, venenatis diam. Ut accumsan
-      enim purus. Nulla rhoncus turpis vel sem elementum maximus.
-    </p>
+  <p>
+    Nunc a tortor a nisl lobortis ultricies. Praesent nec mauris eget leo
+    vulputate facilisis vitae id lectus. Suspendisse ultrices augue nisi, ac
+    hendrerit nunc efficitur eu. Etiam vehicula finibus velit laoreet luctus.
+    Aliquam id est cursus, vestibulum velit eu, venenatis diam. Ut accumsan enim
+    purus. Nulla rhoncus turpis vel sem elementum maximus.
+  </p>
 
-    <p>
-      Vivamus eleifend vestibulum sodales. Suspendisse sed suscipit turpis.
-      Mauris faucibus ligula vitae diam venenatis, vel condimentum sapien
-      euismod. Donec vitae ex nisi. Etiam ac imperdiet diam. Suspendisse
-      facilisis dui eu massa imperdiet, et faucibus nisl tristique. Nam luctus
-      auctor justo, quis gravida ligula blandit nec. Suspendisse pretium ante
-      leo, sit amet tincidunt ipsum tristique eu. Class aptent taciti sociosqu
-      ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam porta
-      lobortis ex at sollicitudin. Fusce sodales laoreet viverra. Aenean eu
-      blandit lectus. Integer nulla sapien, porta vel ligula vitae, faucibus
-      suscipit lectus. Pellentesque in risus non metus feugiat volutpat non eu
-      libero.
-    </p>
-
-    {% endblock %}
-  </body>
+  <p>
+    Vivamus eleifend vestibulum sodales. Suspendisse sed suscipit turpis. Mauris
+    faucibus ligula vitae diam venenatis, vel condimentum sapien euismod. Donec
+    vitae ex nisi. Etiam ac imperdiet diam. Suspendisse facilisis dui eu massa
+    imperdiet, et faucibus nisl tristique. Nam luctus auctor justo, quis gravida
+    ligula blandit nec. Suspendisse pretium ante leo, sit amet tincidunt ipsum
+    tristique eu. Class aptent taciti sociosqu ad litora torquent per conubia
+    nostra, per inceptos himenaeos. Etiam porta lobortis ex at sollicitudin.
+    Fusce sodales laoreet viverra. Aenean eu blandit lectus. Integer nulla
+    sapien, porta vel ligula vitae, faucibus suscipit lectus. Pellentesque in
+    risus non metus feugiat volutpat non eu libero.
+  </p>
 </div>
+
+{% endblock %} 
+
+{% block footer %}
+
+<script src="/scripts/gallery.js" crossorigin="anonymous"></script>
+
+{% endblock %}
