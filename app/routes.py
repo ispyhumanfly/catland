@@ -1,9 +1,11 @@
 from app import app
 
-from flask import render_template, request, redirect, flash, session, url_for, send_from_directory
+from flask import render_template, request, redirect, flash, session, url_for, abort, safe_join, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
 import boto3
+import botocore
+
 import os
 
 
@@ -11,25 +13,25 @@ import os
 @app.route('/index')
 def index():
     message = "Hey there, welcome to my website."
-    return render_template("index.jinja", message=message)
+    return render_template("index.html", message=message)
 
 
 @app.route('/bootstrap')
 def bootsrap():
     message = "Welcome to the bootstrap page."
-    return render_template("bootstrap.jinja", message=message)
+    return render_template("bootstrap.html", message=message)
 
 
 @app.route('/readme')
 def readme():
     message = "Welcome to the readme page."
-    return render_template("readme.jinja", message=message)
+    return render_template("readme.html", message=message)
 
 
 @app.route('/about')
 def about():
     message = "About Catland"
-    return render_template("about.jinja", message=message)
+    return render_template("about.html", message=message)
 
 
 @app.route('/gallery')
@@ -41,11 +43,11 @@ def gallery():
     client = boto3.client('s3')
 
     for file in client.list_objects(Bucket='catland-uploads')['Contents']:
-        url = "/uploads/%s" % (file['Key'])
+        url = "/download/%s" % (file['Key'])
         images.append(url)
         print(url)
 
-    return render_template('gallery.jinja', message=message, images=images)
+    return render_template('gallery.html', message=message, images=images)
 
 
 @app.route('/uploader', methods=['GET', 'POST'])
@@ -67,7 +69,7 @@ def uploader():
         print("The bucket existed already, move along...")
 
     if request.method == 'GET':
-        return render_template('uploader.jinja', message=message)
+        return render_template('uploader.html', message=message)
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -97,3 +99,21 @@ def uploader():
                 print(key['Key'])
 
             return redirect(url_for('uploader', filename=filename))
+
+
+@app.route('/download/<filename>')
+def download(filename):
+    s3 = boto3.resource("s3")
+
+    try:
+        # TODO start saving files temporarily in ./tmp instead of ./uploads...
+        s3.Bucket("catland-uploads").download_file(filename,
+                                                   "./app/uploads/%s" % filename)
+        return send_from_directory(app.config["UPLOAD_FOLDER"], filename=filename, as_attachment=False)
+    except:
+        print("something went wong")
+
+    safe_path = safe_join(app.config["UPLOAD_FOLDER"], filename)
+
+    return send_file("uploads", filename)
+    # return send_from_directory("./uploads", filename=filename)
