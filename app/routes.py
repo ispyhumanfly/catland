@@ -1,9 +1,11 @@
 from app import app
 
-from flask import render_template, request, redirect, flash, session, url_for, send_from_directory
+from flask import render_template, request, redirect, flash, session, url_for, abort, safe_join, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
 import boto3
+import botocore
+
 import os
 
 
@@ -35,13 +37,13 @@ def about():
 @app.route('/gallery')
 def gallery():
     message = "Gallery"
-    
+
     images = []
 
     client = boto3.client('s3')
 
     for file in client.list_objects(Bucket='catland-uploads')['Contents']:
-        url = "/uploads/%s" % (file['Key'])
+        url = "/download/%s" % (file['Key'])
         images.append(url)
         print(url)
 
@@ -97,3 +99,21 @@ def uploader():
                 print(key['Key'])
 
             return redirect(url_for('uploader', filename=filename))
+
+
+@app.route('/download/<filename>')
+def download(filename):
+    s3 = boto3.resource("s3")
+
+    try:
+        # TODO start saving files temporarily in ./tmp instead of ./uploads...
+        s3.Bucket("catland-uploads").download_file(filename,
+                                                   "./app/uploads/%s" % filename)
+        return send_from_directory(app.config["UPLOAD_FOLDER"], filename=filename, as_attachment=False)
+    except:
+        print("something went wong")
+
+    safe_path = safe_join(app.config["UPLOAD_FOLDER"], filename)
+
+    return send_file("uploads", filename)
+    # return send_from_directory("./uploads", filename=filename)
