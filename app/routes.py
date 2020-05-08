@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 import boto3
 import botocore
-
+import tempfile
 import os
 
 
@@ -83,11 +83,11 @@ def uploader():
             return redirect(request.url)
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['TEMP'], filename))
+            file.save(os.path.join(tempfile.gettempdir(), filename))
 
             s3 = boto3.resource('s3')
             s3.meta.client.upload_file(os.path.join(
-                app.config['TEMP'], filename), 'catland-uploads', filename)
+                tempfile.gettempdir(), filename), 'catland-uploads', filename)
 
             bucket = s3.Bucket('catland-uploads')
 
@@ -107,8 +107,8 @@ def download(filename):
 
     try:
         s3.Bucket("catland-uploads").download_file(filename,
-                                                   os.path.join(app.config['TEMP'], filename))
+                                                   os.path.join(tempfile.gettempdir(), filename))
     except:
         print("something went wong")
 
-    return send_file(os.path.join(app.config['TEMP'], filename))
+    return send_file(os.path.join(tempfile.gettempdir(), filename))
