@@ -1,5 +1,3 @@
-
-
 {% extends "base.jinja" %} 
 
 {% block head %} 
@@ -21,24 +19,25 @@
 {% include "components/navbar.jinja" ignore missing %}
 
 <div class="gallery">
-  
-<h2 style="text-align:center">Slideshow Gallery</h2>
-  <!-- Container for the image gallery -->
-  <div class="container">
+    
+    <h2 style="text-align:center">Slideshow Gallery</h2>
+        
+    <!-- Container for the image gallery -->
+    <div class="container">
 
-      <!-- Full-width images with number text -->
+        <!-- Full-width images with number text -->
 
-      {% for image in images %}
+        {% for image in images %}
 
         <div class="mySlides">
             <div class="numbertext"> X </div>
             <img src="{{ image }}" style="width:100%">
         </div>
 
-      {% endfor %}
-    
-      <!-- Thumbnail images -->
-      <div class="row">
+        {% endfor %}
+
+        <!-- Thumbnail images -->
+        <div class="row">
 
         {% for image in images %}
 
@@ -48,10 +47,9 @@
         
         {% endfor %}
         
-            
-          </div>
-        {% endblock %}
-       
-      </div>
+        </div>
     </div>
-{% endblock }
+</div>
+
+{% endblock %}
+        
