@@ -19,36 +19,19 @@
 {% include "components/navbar.jinja" ignore missing %}
 
 <div class="gallery">
+
+    {% for image in images %}
     
-    <h2 style="text-align:center">Slideshow Gallery</h2>
-        
-    <!-- Container for the image gallery -->
-    <div class="container">
-
-        <!-- Full-width images with number text -->
-
-        {% for image in images %}
-
-        <div class="mySlides">
-            <div class="numbertext"> X </div>
-            <img src="{{ image }}" style="width:100%">
-        </div>
-
-        {% endfor %}
-
-        <!-- Thumbnail images -->
-        <div class="row">
-
-            {% for image in images %}
-
-            <div class="column">
-                <img class="demo cursor" src="{{ image }}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-            </div>
-        
-            {% endfor %}
-        
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{{ image }}" alt="{{ image }}">
+            </div>        
         </div>
     </div>
+
+    {% endfor %}
+
 </div>
 
 {% endblock %}
