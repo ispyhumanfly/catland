@@ -93,3 +93,5 @@ img {
 .demo:hover {
   opacity: 1;
 }
+
+body {background-color: lightblue;} 
