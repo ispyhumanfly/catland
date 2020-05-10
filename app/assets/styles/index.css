@@ -6,6 +6,11 @@ p {background-color: white; padding: 50px; border: 1px solid; font-size:150%;}
 
 img {height: 250px; width: auto;; padding: 10px; border: 1px dashed;}
 
-
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+  }
 
 
