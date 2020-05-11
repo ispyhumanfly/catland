@@ -22,22 +22,22 @@
     You made it to the gallery!
 </div>
 
-<div class="gallery">
 
-    {% for image in images %}
-    
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ image }}" alt="Card image cap" />
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+{% for image in images %}
+
+<!-- div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ image }}" alt="Card image cap" />
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
+</div -->
 
-    {% endfor %}
+<img src="{{ image }}" class="img-fluid" alt="{{ image }}">
 
-</div>
+
+{% endfor %}
 
 {% endblock %}
 
