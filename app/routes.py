@@ -13,7 +13,17 @@ import os
 @app.route('/index')
 def index():
     message = "Hey there, welcome to my website."
-    return render_template("index.jinja", message=message)
+
+    images = []
+
+    client = boto3.client('s3')
+
+    for file in client.list_objects(Bucket='catland-uploads')['Contents']:
+        url = "/download/%s" % (file['Key'])
+        images.append(url)
+        print(url)
+
+    return render_template("index.jinja", message=message, images=images)
 
 
 @app.route('/bootstrap')
@@ -109,6 +119,6 @@ def download(filename):
         s3.Bucket("catland-uploads").download_file(filename,
                                                    os.path.join(tempfile.gettempdir(), filename))
     except:
-        print("something went wong")
+        print("something went wrong")
 
     return send_file(os.path.join(tempfile.gettempdir(), filename))
