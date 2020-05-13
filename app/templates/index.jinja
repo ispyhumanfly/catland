@@ -41,6 +41,39 @@
         </a>
     </div>
 
+    <form>
+
+        <div class="form-group">
+            <label>Subject:</label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control">
+            <small id="emailHelp" class="form-text text-muted">We probably won't share your email with anyone else,
+                probably.</small>
+        </div>
+        <div class="form-group">
+            <label>Regarding:</label>
+            <small id="regardingHelp" class="form-text text-muted">To select muliple, hold down ctrl while
+                clicking.</small>
+            <select class="form-control ">
+                <option>Permission of use</option>
+                <option>Request of purchase</option>
+                <option>Problems on website</option>
+                <option>Copyright infrigment</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Message:</label>
+            <textarea name="Form-control" id="" cols="30" rows="10"></textarea>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Meow (Submit)</button>
+    </form>
+
     {% endblock %}
 
     {% block footer %}
