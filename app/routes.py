@@ -2,6 +2,7 @@ from app import app
 
 from flask import render_template, request, redirect, flash, session, url_for, abort, safe_join, send_file, send_from_directory
 from werkzeug.utils import secure_filename
+from postmark.core import PMMail
 
 import boto3
 import botocore
@@ -122,3 +123,20 @@ def download(filename):
         print("something went wrong")
 
     return send_file(os.path.join(tempfile.gettempdir(), filename))
+
+
+@app.route('/contact')
+def contact():
+
+    pm = PMMail(api_key="0e1604ec-e20c-438f-b7c0-3ea34878b849", to='mcbryankim@gmail.com', sender='harpo.marx@gmail.com',
+                template_id=17926943, template_model={
+                    'name': 'Bob',
+                    'product_name': 'Catland',
+                    'login_url': 'meow moew',
+                    'username': 'Meow cat',
+                    'trial_start': '358357',
+                    'trial_end': '5767373',
+                    'sender_name': 'Kim'
+                })
+
+    pm.send()

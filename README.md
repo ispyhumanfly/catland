@@ -6,3 +6,10 @@ A website about cats.
 
 # Running
     flask run
+
+# postmark
+  set up a postmark account and aip key
+
+# s3
+  amazon aws account required
+  
